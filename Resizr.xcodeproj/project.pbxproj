@@ -12,6 +12,9 @@
 		6E7997E6222EEE1700850D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7997E5222EEE1700850D97 /* Assets.xcassets */; };
 		6E7997E9222EEE1700850D97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E7997E7222EEE1700850D97 /* Main.storyboard */; };
 		6E7997F2222EEEC300850D97 /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7997F1222EEEC300850D97 /* DragView.swift */; };
+		6EF404AD22302AFB00A57454 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 6EF404AC22302AFB00A57454 /* Contents.json */; };
+		6EF404AF22302F7200A57454 /* DragViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF404AE22302F7200A57454 /* DragViewDelegate.swift */; };
+		6EF404B122302F9F00A57454 /* NSImage+Resized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF404B022302F9F00A57454 /* NSImage+Resized.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		6E7997EA222EEE1700850D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E7997EB222EEE1700850D97 /* Resizr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Resizr.entitlements; sourceTree = "<group>"; };
 		6E7997F1222EEEC300850D97 /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
+		6EF404AC22302AFB00A57454 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		6EF404AE22302F7200A57454 /* DragViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragViewDelegate.swift; sourceTree = "<group>"; };
+		6EF404B022302F9F00A57454 /* NSImage+Resized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Resized.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +62,15 @@
 			isa = PBXGroup;
 			children = (
 				6E7997E1222EEE1600850D97 /* AppDelegate.swift */,
+				6EF404AE22302F7200A57454 /* DragViewDelegate.swift */,
+				6E7997F1222EEEC300850D97 /* DragView.swift */,
 				6E7997E3222EEE1600850D97 /* HomeController.swift */,
+				6EF404B022302F9F00A57454 /* NSImage+Resized.swift */,
 				6E7997E5222EEE1700850D97 /* Assets.xcassets */,
 				6E7997E7222EEE1700850D97 /* Main.storyboard */,
 				6E7997EA222EEE1700850D97 /* Info.plist */,
 				6E7997EB222EEE1700850D97 /* Resizr.entitlements */,
-				6E7997F1222EEEC300850D97 /* DragView.swift */,
+				6EF404AC22302AFB00A57454 /* Contents.json */,
 			);
 			path = Resizr;
 			sourceTree = "<group>";
@@ -98,6 +107,11 @@
 				TargetAttributes = {
 					6E7997DD222EEE1600850D97 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -126,6 +140,7 @@
 			files = (
 				6E7997E6222EEE1700850D97 /* Assets.xcassets in Resources */,
 				6E7997E9222EEE1700850D97 /* Main.storyboard in Resources */,
+				6EF404AD22302AFB00A57454 /* Contents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E7997E4222EEE1600850D97 /* HomeController.swift in Sources */,
+				6EF404B122302F9F00A57454 /* NSImage+Resized.swift in Sources */,
+				6EF404AF22302F7200A57454 /* DragViewDelegate.swift in Sources */,
 				6E7997E2222EEE1600850D97 /* AppDelegate.swift in Sources */,
 				6E7997F2222EEEC300850D97 /* DragView.swift in Sources */,
 			);
@@ -284,6 +301,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurgenes.Resizr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -303,6 +321,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurgenes.Resizr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

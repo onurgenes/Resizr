@@ -8,10 +8,6 @@
 
 import Cocoa
 
-protocol DragViewDelegate {
-    func dragView(didDragFileWith url: URL)
-}
-
 class DragView: NSView {
     
     var delegate: DragViewDelegate?
