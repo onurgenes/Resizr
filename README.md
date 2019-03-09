@@ -12,3 +12,9 @@ Resizr is a MacOS application for creating AppIcon for iOS and Android (coming s
 ### Contribute
 
 Feel free to open `PR`s.
+
+## LICENSE
+
+App is under MIT License.
+
+Resizr's logo icon is from [Font Awesome](https://fontawesome.com/icons/pencil-ruler?style=solid) and [it's under their own license](https://fontawesome.com/license).
