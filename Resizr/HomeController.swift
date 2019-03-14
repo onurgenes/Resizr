@@ -10,10 +10,10 @@ import Cocoa
 
 class HomeController: NSViewController {
     
-    @IBOutlet var dragView: DragView!
-    @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet private var dragView: DragView!
+    @IBOutlet private weak var imageView: NSImageView!
     
-    var selectedFolder: URL?
+    private var selectedFolder: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,11 @@ class HomeController: NSViewController {
         title = "Resizr"
     }
     
-    @IBAction func openSelection(_ sender: Any) {
+    @IBAction private func openSelection(_ sender: Any) {
         save(image: imageView.image!)
     }
     
-    func selectFolder() {
+    private func selectFolder() {
         guard let window = view.window else { return }
         
         let panel = NSOpenPanel()
@@ -35,18 +35,12 @@ class HomeController: NSViewController {
         
         panel.beginSheetModal(for: window) { (result) in
             if result == NSApplication.ModalResponse.OK {
-                self.selectedFolder = panel.urls[0]
+                self.selectedFolder = panel.urls.first
             }
         }
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
-    func infoAbout(url: URL) -> String {
+    private func infoAbout(url: URL) -> String {
         
         let fileManager = FileManager.default
         
@@ -65,7 +59,7 @@ class HomeController: NSViewController {
         }
     }
     
-    func resize(image: NSImage, completion: @escaping ([String: NSImage]?, String?) -> ()) {
+    private func resize(image: NSImage, completion: @escaping ([String: NSImage]?, String?) -> ()) {
         var images = [String: NSImage]()
         let sizes = ["Icon-App-20x20@1x.png": 20,
                      "Icon-App-20x20@2x.png": 40,
@@ -102,7 +96,7 @@ class HomeController: NSViewController {
         }
     }
     
-    func save(image: NSImage) {
+    private func save(image: NSImage) {
         resize(image: image) { (imagesDict, errorString) in
             if let error = errorString {
                 print(error)
