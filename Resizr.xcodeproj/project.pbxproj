@@ -312,7 +312,7 @@
 				CODE_SIGN_ENTITLEMENTS = Resizr/Resizr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PXCNFGS7X2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Resizr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -332,7 +332,7 @@
 				CODE_SIGN_ENTITLEMENTS = Resizr/Resizr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PXCNFGS7X2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Resizr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -12,6 +12,7 @@ class HomeController: NSViewController {
     
     @IBOutlet private var dragView: DragView!
     @IBOutlet private weak var imageView: NSImageView!
+    @IBOutlet weak var segmentedControl: NSSegmentedControl!
     
     private var selectedFolder: URL?
     
@@ -19,10 +20,11 @@ class HomeController: NSViewController {
         super.viewDidLoad()
         dragView.delegate = self
         title = "Resizr"
+        segmentedControl.selectedSegment = 0
     }
     
     @IBAction private func openSelection(_ sender: Any) {
-        save(image: imageView.image!)
+        selectFolder()
     }
     
     private func selectFolder() {
@@ -36,6 +38,7 @@ class HomeController: NSViewController {
         panel.beginSheetModal(for: window) { (result) in
             if result == NSApplication.ModalResponse.OK {
                 self.selectedFolder = panel.urls.first
+                self.save(image: self.imageView.image!, url: self.selectedFolder)
             }
         }
     }
@@ -96,7 +99,7 @@ class HomeController: NSViewController {
         }
     }
     
-    private func save(image: NSImage) {
+    private func save(image: NSImage, url: URL?) {
         resize(image: image) { (imagesDict, errorString) in
             if let error = errorString {
                 print(error)
@@ -104,8 +107,8 @@ class HomeController: NSViewController {
             }
             
             guard let imagesDict = imagesDict else { return }
-            guard let downloadsFolder = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first else { return }
-            let withFolder = downloadsFolder.appendingPathComponent("Resizr").appendingPathComponent("icon").appendingPathComponent("iOS")
+            guard let selectedFolder = url else { return }
+            let withFolder = selectedFolder.appendingPathComponent("Resizr").appendingPathComponent("icon").appendingPathComponent("iOS")
             let withAppIconSet = withFolder.appendingPathComponent("AppIcon.appiconset")
             do {
                 try FileManager.default.createDirectory(at: withFolder, withIntermediateDirectories: true, attributes: nil)
