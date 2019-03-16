@@ -38,7 +38,15 @@ class HomeController: NSViewController {
         panel.beginSheetModal(for: window) { (result) in
             if result == NSApplication.ModalResponse.OK {
                 self.selectedFolder = panel.urls.first
-                self.save(image: self.imageView.image!, url: self.selectedFolder)
+                switch self.segmentedControl.selectedSegment {
+                case 0:
+                    self.save(image: self.imageView.image!, url: self.selectedFolder)
+                case 1:
+                    self.save(asset: self.imageView.image!, url: self.selectedFolder)
+                default:
+                    break
+                }
+                
             }
         }
     }
@@ -96,6 +104,63 @@ class HomeController: NSViewController {
                 }
             }
             
+        }
+    }
+    
+    private func assetResize(image: NSImage, completion: @escaping ([String: NSImage]?, String?) -> ()) {
+        var images = [String: NSImage]()
+        let rep = image.representations[0]
+        let size = NSSize(width: rep.pixelsWide, height: rep.pixelsHigh)
+        let sizes = ["asset@1x": NSSize(width: size.width / 3, height: size.height / 3),
+                     "asset@2x": NSSize(width: (size.width / 3) * 2, height: (size.height / 3) * 2),
+                     "asset@3x": size]
+        
+        for (key, value) in sizes {
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let resizedImage = image.scaled(to: value) {
+                    let imageName = key
+                    images[imageName] = resizedImage
+                } else {
+                    completion(nil, "Couldn't get image")
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion(images, nil)
+                }
+            }
+        }
+    }
+    
+    private func save(asset: NSImage, url: URL?) {
+        self.assetResize(image: asset) { (imagesDict, errorString) in
+            if let error = errorString {
+                print(error)
+                return
+            }
+            
+            guard let imagesDict = imagesDict else { return }
+            guard let selectedFolder = url else { return }
+            let withFolder = selectedFolder.appendingPathComponent("Resizr").appendingPathComponent("asset").appendingPathComponent("iOS")
+            let withAssetSet = withFolder.appendingPathComponent("asset.imageset")
+            do {
+                try FileManager.default.createDirectory(at: withFolder, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(at: withAssetSet, withIntermediateDirectories: true, attributes: nil)
+                for (name, image) in imagesDict {
+                    let urlWithName = withAssetSet.appendingPathComponent(name + ".png")
+                    guard let tiffRepresantation = image.tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresantation) else { return }
+                    let png = bitmapImage.representation(using: .png, properties: [:])
+                    do {
+                        try png?.write(to: urlWithName)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+                guard let filePath = Bundle.main.url(forResource: "AssetContents", withExtension: "json") else { return }
+                let originalData = try Data(contentsOf: filePath)
+                try originalData.write(to: withAssetSet.appendingPathComponent("Contents.json"))
+            } catch let error {
+                print(error)
+            }
         }
     }
     

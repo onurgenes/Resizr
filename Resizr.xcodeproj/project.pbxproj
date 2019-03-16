@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32378812223AC119009F4D04 /* CALayer+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32378810223AC118009F4D04 /* CALayer+Utility.swift */; };
 		32378813223AC119009F4D04 /* NSDraggingInfo+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32378811223AC119009F4D04 /* NSDraggingInfo+Utility.swift */; };
+		6E28A3F7223D1FC400A94784 /* AssetContents.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E28A3F6223D1FC400A94784 /* AssetContents.json */; };
 		6E7997E2222EEE1600850D97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7997E1222EEE1600850D97 /* AppDelegate.swift */; };
 		6E7997E4222EEE1600850D97 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7997E3222EEE1600850D97 /* HomeController.swift */; };
 		6E7997E6222EEE1700850D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7997E5222EEE1700850D97 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		32378810223AC118009F4D04 /* CALayer+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CALayer+Utility.swift"; path = "Resizr/Utility/CALayer+Utility.swift"; sourceTree = SOURCE_ROOT; };
 		32378811223AC119009F4D04 /* NSDraggingInfo+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDraggingInfo+Utility.swift"; path = "Resizr/Utility/NSDraggingInfo+Utility.swift"; sourceTree = SOURCE_ROOT; };
+		6E28A3F6223D1FC400A94784 /* AssetContents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssetContents.json; sourceTree = "<group>"; };
 		6E7997DE222EEE1600850D97 /* Resizr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Resizr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7997E1222EEE1600850D97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E7997E3222EEE1600850D97 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				6E7997EA222EEE1700850D97 /* Info.plist */,
 				6E7997EB222EEE1700850D97 /* Resizr.entitlements */,
 				6EF404AC22302AFB00A57454 /* Contents.json */,
+				6E28A3F6223D1FC400A94784 /* AssetContents.json */,
 			);
 			path = Resizr;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E28A3F7223D1FC400A94784 /* AssetContents.json in Resources */,
 				6E7997E6222EEE1700850D97 /* Assets.xcassets in Resources */,
 				6E7997E9222EEE1700850D97 /* Main.storyboard in Resources */,
 				6EF404AD22302AFB00A57454 /* Contents.json in Resources */,
