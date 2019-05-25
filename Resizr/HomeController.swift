@@ -146,7 +146,7 @@ class HomeController: NSViewController {
                 try FileManager.default.createDirectory(at: withFolder, withIntermediateDirectories: true, attributes: nil)
                 try FileManager.default.createDirectory(at: withAssetSet, withIntermediateDirectories: true, attributes: nil)
                 for (name, image) in imagesDict {
-                    let urlWithName = withAssetSet.appendingPathComponent(name + ".png")
+                    let urlWithName = withAssetSet.appendingPathComponent(name + "")
                     guard let tiffRepresantation = image.tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresantation) else { return }
                     let png = bitmapImage.representation(using: .png, properties: [:])
                     do {
@@ -179,13 +179,13 @@ class HomeController: NSViewController {
                 try FileManager.default.createDirectory(at: withFolder, withIntermediateDirectories: true, attributes: nil)
                 try FileManager.default.createDirectory(at: withAppIconSet, withIntermediateDirectories: true, attributes: nil)
                 for (name, image) in imagesDict {
-                    let urlWithName = withAppIconSet.appendingPathComponent(name + ".png")
+                    let urlWithName = withAppIconSet.appendingPathComponent(name)
                     guard let tiffRepresentation = image.tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else { return }
                     let png = bitmapImage.representation(using: .png, properties: [:])
                     do {
                         try png?.write(to: urlWithName)
                         if name.contains("tunes") {
-                            try  png?.write(to: withFolder.appendingPathComponent(name + ".png"))
+                            try  png?.write(to: withFolder.appendingPathComponent(name))
                         }
                     } catch let error {
                         print(error)
