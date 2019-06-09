@@ -8,7 +8,7 @@ Resizr is a MacOS application for creating AppIcon for iOS and Android (coming s
 - [x] iOS Asset Resizr
 - [ ] Android Icon Set Support
 - [ ] Better UI
-- [ ] Ask for saving location
+- [x] Ask for saving location
 - [ ] Check for image size (preferably 1536x1536 PNG format) if not show warning
 
 ### Contribute
