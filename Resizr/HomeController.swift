@@ -15,6 +15,7 @@ class HomeController: NSViewController {
     @IBOutlet weak var segmentedControl: NSSegmentedControl!
     
     private var selectedFolder: URL?
+    private var selectedAssetName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,12 +142,17 @@ class HomeController: NSViewController {
             guard let imagesDict = imagesDict else { return }
             guard let selectedFolder = url else { return }
             let withFolder = selectedFolder.appendingPathComponent("Resizr").appendingPathComponent("asset").appendingPathComponent("iOS")
-            let withAssetSet = withFolder.appendingPathComponent("asset.imageset")
+            var withAssetSet = withFolder
+            if let selectedAssetName = self.selectedAssetName {
+                withAssetSet = withAssetSet.appendingPathComponent(selectedAssetName + ".imageset")
+            } else {
+                withAssetSet = withFolder.appendingPathComponent("asset.imageset")
+            }
             do {
                 try FileManager.default.createDirectory(at: withFolder, withIntermediateDirectories: true, attributes: nil)
                 try FileManager.default.createDirectory(at: withAssetSet, withIntermediateDirectories: true, attributes: nil)
                 for (name, image) in imagesDict {
-                    let urlWithName = withAssetSet.appendingPathComponent(name + "")
+                    let urlWithName = withAssetSet.appendingPathComponent(name + ".png")
                     guard let tiffRepresantation = image.tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresantation) else { return }
                     let png = bitmapImage.representation(using: .png, properties: [:])
                     do {
@@ -205,5 +211,6 @@ extension HomeController: DragViewDelegate {
     func dragView(didDragFileWith url: URL) {
         guard let image = NSImage(contentsOf: url) else { return }
         imageView.image = image
+        selectedAssetName = url.deletingPathExtension().lastPathComponent
     }
 }
