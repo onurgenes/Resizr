@@ -13,7 +13,7 @@ class DragView: NSView {
     var delegate: DragViewDelegate?
     
     private var filePath: String?
-    private var acceptedFileExtensions = ["jpg", "png"]
+    private var acceptedFileExtensions = ["jpg", "png", "jpeg"]
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
