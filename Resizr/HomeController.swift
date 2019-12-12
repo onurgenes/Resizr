@@ -117,7 +117,6 @@ class HomeController: NSViewController {
                      "asset@3x": size]
         
         for (key, value) in sizes {
-            DispatchQueue.global(qos: .userInitiated).async {
                 if let resizedImage = image.scaled(to: value) {
                     let imageName = key
                     images[imageName] = resizedImage
@@ -128,7 +127,6 @@ class HomeController: NSViewController {
                 DispatchQueue.main.async {
                     completion(images, nil)
                 }
-            }
         }
     }
     
